@@ -1,7 +1,50 @@
+*{
+  box-sizing:border-box;
+}
+
 html, body {
   margin: 0;
   padding: 0;
+  background:rgb(241,240,233);
+  color:#2d2d2d;
+  font-family: "Rethink Sans", sans-serif;
 }
-canvas {
-  display: block;
+
+div.grid-item {
+  width:33.33%;
+  padding:10px;
+}
+
+h1:hover {
+  color:red;
+}
+
+a.link {
+  padding:10px;
+  background:grey;
+}
+
+a.link:hover {
+  background:blue;
+}
+
+div.grid-item img {
+  width:100%;
+  border-radius:20px;
+  transition:all 0.25s;
+}
+
+div.grid-item img:hover {
+  transform:translate(-3px, -3px) rotate(3deg);
+  box-shadow:10px 10px 10px rgba(0,0,0,0.3)
+}
+
+h1 {
+  text-align:center;
+  margin-top:100px;
+  font-size:50px;
+}
+
+p {
+  text-align:center;
 }
