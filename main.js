@@ -1,6 +1,7 @@
 $('.grid').isotope({
+  // options
   itemSelector: '.grid-item',
-  layoutMode: 'fitRows',
-})
+  layoutMode: 'fitRows'
+});
 
-$('a.image').fancybox()
+$('a.grow').fancybox()
