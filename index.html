@@ -1,48 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
-  
   <head>
-    
-    <link rel="stylesheet" type="text/css" href="style.css">
-    
+
     <meta charset="utf-8" />
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=BBH+Sans+Hegarty&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+        
+        
+        html, body {
+            margin:0;
+            padding:0;
+            font-family: "Work Sans", sans-serif;
+            letter-spacing: -0.05rem;
+        }
+
+        main {
+            padding:30px;
+        }
+
+        h1, h2 {
+            font-weight:normal;
+            margin-top:10px;
+        }
+
+        .names {
+            display:flex;
+            justify-content: space-between;
+        }
+        header {
+            padding:20px;
+            background-image:linear-gradient(90deg, rgb(65, 35, 156), black);
+            color:white;
+            display:flex;
+            justify-content: center;
+            text-align: center;
+        }
+
+        header h2 {
+            margin:0;
+        }
+
+        .image {
+            display:flex;
+            justify-content: center;
+            margin-bottom:20px;
+            
+
+        }
+
+        .image div {
+            border-radius:1000px;
+            width:150px;
+            height:150px;
+            background:grey;
+            overflow:hidden;
+            position:relative;
+        }
+
+        .image div img {
+            width:150px;
+            position:absolute;
+            left:0;
+            top:0;
+            pointer-events: none;
+            display:none;
+        }
+
+        .image div img.show {
+            display:block;
+        }
+
+        .driving {
+            background:pink;
+            border-radius: 15px;
+            overflow:hidden;
+            box-shadow:2px 2px 4px 0px rgba(0,0,0,0.15);
+        }
+
+        .driving small {
+            font-size:10px;
+        }
+        .driving-image {
+            width:150px;
+            height:90px;
+            background:grey;
+            border-radius: 5px;
+            overflow:hidden;
+            position: relative;
+            margin-bottom:5px;
+        }
+        .driving img {
+            width:100%;
+            object-fit: cover;
+            border-radius: 5px;
+            display:none;
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .driving img.show {
+            display:block;
+        }
+
+        .driving-top {
+            background:hotpink;
+            padding:20px;
+        }
+
+        .driving-details {
+            padding:15px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+        .image div {
+            display:flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        small {
+            margin-bottom:0;
+        }
+
+        p {
+            margin-top:5px;
+        }
+
+        .cards img {
+            width:100%;
+        }
+        .cards {
+            display:flex;
+            flex-direction: column;
+            gap:10px;
+            margin-bottom:10px;
+        }
+
+        .cards .card {
+            width:100%;
+            background:#f9f9fa;
+            box-shadow:2px 2px 4px 0px rgba(0,0,0,0.15);
+            padding:10px;
+            border-radius:10px;
+            display:flex;
+            gap:10px;
+            stroke:green;
+        }
+        .cards .card div {
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+         .cards .card h2 {
+            margin:0;
+         }
+    
+    </style>
 
   </head>
-  
   <body>
-<!--  Headers go from 1 to 6    -->
-    <h1>This is a big header</h1>
-    
-    <h1 class="copyheader">This is a copy of my big header</h1>
-    
-    <h2>This is a slightrly smaller header</h2>
-<!--  Paragraphs are this    -->
-    <p>sdbhdvbvhi bs b bshjbhsjbhdbvsdhbsdh bhsb dbvhjsdbvhdsbv hdsbvh dsvh hsbvhdsbv hdsbvhsdbvhjsdb</p>
-    
-    <p>sdbhdvbvhi bs b
-      <i>
-        <b>
-          bshjbhsjbhdbvsdhbsdh
-        </b>
-      </i> 
-      bhsb dbvhjsdbvhdsbv hdsbvh dsvh hsbvhdsbv hdsbvhsdbvhjsdb
-    </p>
-<!--   attributes are always = to something in quotes   -->
-    <a href="http://bbc.com" target="_blank">CLICK ME</a>
-    
-    <ul>
-      <li>List item 1</li>
-      <li>List item 2</li>
-      <li>.......</li>
-    </ul>
-    
-    <img src="333elgNvBAcJxRw0uREvBR8gYbB.avif">
-    
-   
+    <header>
+        <h2>🇬🇧 BritCard</h2>
+    </header>
+    <main>
+        <div class="image">
+            <div>
+                <label for="avatar" class="custom-file-upload">
+                    Upload Image
+                </label>
+                <input type="file" id="avatar" name="avatar" accept="image/*" capture="user" />
+                <img id="img1" src="#" />
+            </div>
+        </div>
+        <div class="names">
+            <div style="width:50%">
+                <small>First Name</small>
+                <h2 contenteditable="true" class="fn">First Name</h2>
+            </div>
+            <div style="width:50%">
+                <small>Last Name</small>
+                <h2 contenteditable="true" class="ln">Last Name</h2>
+            </div>
+        </div>
+        <div class="cards">
+            <div class="card">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-icon lucide-circle-check"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                <div>
+                    <small>Right to work</small>
+                    <h2>Permanent</h2>
+                </div>
+            </div>
+           <div class="card">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-icon lucide-circle-check"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                <div>
+                    <small>Proof of age</small>
+                    <h2>Over 18</h2>
+                </div>
+            </div>
+            <div class="card">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-icon lucide-circle-check"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                <div>
+                    <small>Right to rent</small>
+                    <h2>Permanent</h2>
+                </div>
+            </div>
+        </div>
+        <div class="driving">
+            <div class="driving-top">🇬🇧 UK Driving License</div>
+            <div class="driving-details">
+                <div class="driving-image">
+                    <img id="img2" src="#" />
+                </div>
+                <div class="driving-number">
+                    <small>License number</small>
+                    <p><span>NAME</span>VBBV98RTY3FW</p>
+                </div>
+                 <div class="names">
+                    <div>
+                        <small>First Name</small>
+                        <p style="margin-bottom:0" class="dfn">First Name</p>
+                    </div>
+                    <div>
+                        <small>Last Name</small>
+                        <p style="margin-bottom:0" class="dln">Last Name</p>
+                    </div>
+                    <div>
+                        <small>Expiry</small>
+                        <p style="margin-bottom:0">22.05.2035</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let imgInp = document.querySelector('input')
+        let img1 = document.querySelector('#img1')
+        let img2 = document.querySelector('#img2')
+        let fn = document.querySelector('.fn')
+        let dfn = document.querySelector('.dfn')
+        let ln = document.querySelector('.ln')
+        let dln = document.querySelector('.dln')
+        let dnum = document.querySelector('span')
+        imgInp.onchange = evt => {
+            const [file] = imgInp.files
+            if (file) {
+                img1.src = URL.createObjectURL(file)
+                img1.classList.add('show')
+                img2.src = URL.createObjectURL(file)
+                img2.classList.add('show')
+            }
+        }
+        fn.oninput = evt => {
+            dfn.innerText = fn.innerText.trim()
+        }
+        ln.oninput = evt => {
+            dln.innerText = ln.innerText.trim()
+            dnum.innerText = ln.innerText.trim().toUpperCase()
+        }
+    </script>
+
+
   </body>
-  
 </html>
