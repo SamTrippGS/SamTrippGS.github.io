@@ -56,7 +56,17 @@
                     const result = await response.json();
                     console.log(result);
                     data.innerHTML = result.data.message;
-                    time.innerHTML = result.updated_at;
+
+                    const d = new Date(result.updated_at);
+
+                    const nice =
+                    d.getDate().toString().padStart(2, "0") + "/" +
+                    (d.getMonth() + 1).toString().padStart(2, "0") + "/" +
+                    d.getFullYear() + " " +
+                    d.getHours().toString().padStart(2, "0") + ":" +
+                    d.getMinutes().toString().padStart(2, "0");
+
+                    time.innerHTML = nice;
                     updateBtn.disabled = false;
                 } catch (error) {
                     console.error(error.message);
