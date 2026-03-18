@@ -68,6 +68,8 @@
                 marker = L.marker([51.5, -0.12]).addTo(map).bindPopup(popupHtml);
                 map.setView([51.5, -0.12], 13);
             }
+
+            updateBtn.disabled = false;
         }
 
         function escapeHtml(str) {
