@@ -2,11 +2,40 @@
 <html>
     <head>
 
+        <title>Water Level</title>
+
+        <style>
+            html, body {
+                margin:0;
+                padding:0;
+                font-family: sans-serif;
+            }
+
+            .container {
+                width:100%;
+                height:100%;
+                display:flex;
+                align-items: center;
+                justify-content: center;
+                gap:10px;
+            }
+        </style>
     </head>
     <body>
+        
+        <div class="container">
 
+            <div class="data">DATA: <span>please wait</span></div>
+            <div class="time">Last Updated: <span>please wait...</span></div>
+            <button class="updateBtn">UPDATE</button>
+
+        </div>
 
         <script>
+
+            let data = document.querySelector('.data span')
+            let time = document.querySelector('.time span')
+            let updateBtn = document.querySelector('.updateBtn')
             
             async function getData() {
                 const url = "https://my-json-board.sam-e53.workers.dev/api/data";
@@ -18,14 +47,23 @@
 
                     const result = await response.json();
                     console.log(result);
+                    data.innerHTML = result.data.message;
+                    time.innerHTML = 'Last Updated: '+result.updated_at;
+                    updateBtn.disabled = false;
                 } catch (error) {
                     console.error(error.message);
                 }
             }
 
             getData();
+
+            updateBtn.addEventListener('click', function() {
+                data.innerHTML = 'please wait...';
+                updateBtn.disabled = true;
+                getData();
+            })
         
         </script>
-        
+
     </body>
 </html>
