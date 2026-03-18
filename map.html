@@ -81,7 +81,7 @@
 ></script>
 
     <script>
-        const map = L.map("map").setView([51.4743, 0.0354], 5);
+        const map = L.map("map").setView([51.472713, -0.032755], 5);
 
         L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
             maxZoom: 19,
@@ -133,8 +133,8 @@
             if (marker) {
                 marker.setPopupContent(popupHtml);
             } else {
-                marker = L.marker([51.4743, 0.0354]).addTo(map).bindPopup(popupHtml);
-                map.setView([51.4743, 0.0354], 13);
+                marker = L.marker([51.472713, -0.032755]).addTo(map).bindPopup(popupHtml);
+                map.setView([51.472713, -0.032755], 13);
             }
 
             updateBtn.disabled = false;
