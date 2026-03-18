@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Map</title>
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+
+  <style>
+    html, body { margin: 0; height: 100%; }
+    #map { height: 100vh; width: 100%; }
+    pre { margin: 0; white-space: pre-wrap; word-break: break-word; }
+    .container { position:fixed; bottom:0px; left: 0px; width:100%;
+    padding:20px; display: flex; gap:20px}
+  </style>
+</head>
+<body>
+
+       <div class="container">
+
+         
+            <button class="updateBtn">UPDATE</button>
+
+        </div>
+
+  <div id="map"></div>
+
+ <script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""
+></script>
+
+    <script>
+        const map = L.map("map").setView([51.5, -0.12], 5);
+
+        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 19,
+            attribution: "&copy; OpenStreetMap contributors"
+        }).addTo(map);
+
+        let marker;
+
+        async function loadData() {
+            const res = await fetch("https://my-json-board.sam-e53.workers.dev/api/data");
+            const payload = await res.json();
+
+            const data = payload.data.message;
+            const time = payload.updated_at;
+            // const lat = data.lat;
+            // const lon = data.lon;
+
+            if (typeof lat !== "number" || typeof lon !== "number") {
+            throw new Error("lat/lon missing from JSON");
+            }
+
+            const popupHtml = `
+            <strong>Latest Reading:</strong><br>
+            <pre>Level: ${data}</pre>
+            <pre>Last Updated: ${time}</pre>
+            `;
+
+            if (marker) {
+                marker.setPopupContent(popupHtml);
+            } else {
+                marker = L.marker([51.5, -0.12]).addTo(map).bindPopup(popupHtml);
+                map.setView([51.5, -0.12], 13);
+            }
+        }
+
+        function escapeHtml(str) {
+            return str
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;");
+        }
+
+        loadData();
+
+        let updateBtn = document.querySelector('.updateBtn')
+
+        updateBtn.addEventListener('click', function() {
+            updateBtn.disabled = true;
+            loadData();
+        })
+    
+    </script>
+</body>
+</html>
